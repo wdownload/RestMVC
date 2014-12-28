@@ -1,27 +1,33 @@
-exports.index = function(req, res) {
-	res.send('example');
+exports.index = function(req, res){
+  res.send('forum index');
 };
 
-exports.new = function(req, res) {
-	res.send('new example');
+exports.new = function(req, res){
+  res.send('new forum');
 };
 
-exports.create = function(req, res) {
-	res.send('create example');
+exports.create = function(req, res){
+  res.send('create forum');
 };
 
 exports.show = function(req, res){
-  res.send('show example');
+  res.send('show forum ' + req.params.forum);
 };
 
 exports.edit = function(req, res){
-  res.send('edit example');
+  res.send('edit forum ' + req.params.forum);
 };
 
 exports.update = function(req, res){
-  res.send('update example');
+  res.send('update forum ' + req.params.forum);
 };
 
 exports.destroy = function(req, res){
-  res.send('destroy example');
+  res.send('destroy forum ' + req.params.forum);
+};
+
+exports.load = function(id, fn){
+  process.nextTick(function(){
+    fn(null, { title: 'Ferrets' });
+  });
 };

@@ -1,11 +1,12 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-config			= require('./env/config.js');
-var mongoose = require('mongoose');
+var express			= require('express');
+var resource	= require('express-resource');
+var path			= require('path');
+var favicon			= require('serve-favicon');
+var logger			= require('morgan');
+var cookieParser	= require('cookie-parser');
+var bodyParser		= require('body-parser');
+config				= require('./env/config.js');
+var mongoose		= require('mongoose');
 
 
 var app = express();
@@ -29,6 +30,8 @@ var server = require('./routes/server');
 
 app.use('/', client);
 app.use('/', server);
+
+
 
 
 

@@ -1,3 +1,15 @@
+
+/*!
+ * Express - Resource
+ * Copyright(c) 2010-2012 TJ Holowaychuk <tj@vision-media.ca>
+ * Copyright(c) 2011 Daniel Gasienica <daniel@gasienica.ch>
+ * MIT Licensed
+ */
+
+/**
+ * Module dependencies.
+ */
+
 var express = require('express');
 var methods = require('methods');
 var debug = require('debug')('express-resource');
@@ -10,15 +22,21 @@ var en = lingo.en;
  */
 
 var orderedActions = [
-   'index'   ,  //  GET  /
-   'new'     , //  GET  /new
-   'create'  , //  POST /
-   'show'    , //  GET  /:id
-   'edit'    , //  GET  /edit/:id
-   'update'  , //  PUT  /:id
-   'destroy' , //  DEL  /:id
+   'index'    //  GET   /
+  , 'new'     //  GET   /new
+  , 'create'  //  POST  /
+  , 'show'    //  GET   /:id
+  , 'edit'    //  GET   /edit/:id
+  , 'update'  //  PUT   /:id
+  , 'patch'   //  PATCH /:id
+  , 'destroy' //  DEL   /:id
 ];
 
+/**
+ * Expose `Resource`.
+ */
+
+module.exports = Resource;
 
 /**
  * Initialize a new `Resource` with the given `name` and `actions`.
@@ -35,12 +53,10 @@ function Resource(name, actions, app) {
   this.routes = {};
   actions = actions || {};
   this.base = actions.base || '/';
-  if ('/' !== this.base[this.base.length - 1]) {
-    this.base += '/';
-    this.format = actions.format;
-    this.id = actions.id || this.defaultId;
-    this.param = ':' + this.id;
-  }
+  if ('/' != this.base[this.base.length - 1]) this.base += '/';
+  this.format = actions.format;
+  this.id = actions.id || this.defaultId;
+  this.param = ':' + this.id;
 
   // default actions
   for (var i = 0, key; i < orderedActions.length; ++i) {
@@ -218,6 +234,9 @@ Resource.prototype.mapDefaultAction = function(key, fn){
     case 'update':
       this.put(fn);
       break;
+    case 'patch':
+      this.patch(fn);
+      break;
     case 'destroy':
       this.del(fn);
       break;
@@ -256,5 +275,3 @@ app.resource = function(name, actions, opts){
   var res = this.resources[name] = new Resource(name, actions, this);
   return res;
 };
-
-module.exports = Resource;

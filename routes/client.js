@@ -1,5 +1,5 @@
 var express		= require('express');
-var resource	= require('../resource');
+var resource	= require('express-resource');
 
 var client = express();
 

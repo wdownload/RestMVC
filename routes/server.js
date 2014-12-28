@@ -1,8 +1,7 @@
 var express		= require('express');
-var resource	= require('../resource');
 
 var server = express();
 
-server.resource('exampleserver', require('../controllers/example'));
+server.resource('exampleserver', require('../controllers/exampleserver'));
 
 module.exports = server;

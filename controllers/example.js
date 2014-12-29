@@ -1,36 +1,29 @@
-exports.index = function(req, res, next){
+exports.index = function(req, res){
   res.send('forum index');
-  next();
 };
 
-exports.new = function(req, res, next){
+exports.new = function(req, res){
   res.send('new forum');
-  next();
 };
 
-exports.create = function(req, res, next){
-    res.send('create forum');
-    next();
+exports.create = function(req, res){
+  res.send('create forum');
 };
 
-exports.show = function(req, res, next){
-  res.send('show forum');
-  next();
+exports.show = function(req, res){
+  res.send('show forum ' + req.params.forum);
 };
 
-exports.edit = function(req, res, next){
-  res.send('edit forum');
-  next();
+exports.edit = function(req, res){
+  res.send('edit forum ' + req.params.forum);
 };
 
-exports.update = function(req, res, next){
-  res.send('update forum');
-  next();
+exports.update = function(req, res){
+  res.send('update forum ' + req.params.forum);
 };
 
-exports.destroy = function(req, res, next){
-    res.send('destroy forum');
-    next();
+exports.destroy = function(req, res){
+  res.send('destroy forum ' + req.params.forum);
 };
 
 exports.load = function(id, fn){

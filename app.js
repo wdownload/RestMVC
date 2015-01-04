@@ -1,11 +1,11 @@
 var express			= require('express');
-var resource	= require('express-resource');
+var resource		= require('express-resource');
 var path			= require('path');
 var favicon			= require('serve-favicon');
 var logger			= require('morgan');
 var cookieParser	= require('cookie-parser');
 var bodyParser		= require('body-parser');
-config				= require('./env/config.js');
+var database			= require('./config/database/config.js');
 var mongoose		= require('mongoose');
 
 
@@ -31,7 +31,7 @@ var server = require('./routes/server')(app);
 
 
 // Configurations for the db connection
-mongoose.connect(config.db, function(req, res) {
+mongoose.connect(database.db, function(req, res) {
 	console.log("Connect to the db done!");
 });
 
